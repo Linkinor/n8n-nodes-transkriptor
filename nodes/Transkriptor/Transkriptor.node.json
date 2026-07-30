@@ -1,0 +1,22 @@
+{
+	"node": "n8n-nodes-transkriptor",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Productivity", "Communication"],
+	"subcategories": {
+		"Productivity": ["Transcription"]
+	},
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://developer.transkriptor.com/docs/authentication"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://developer.transkriptor.com/docs"
+			}
+		]
+	},
+	"alias": ["transcription", "speech to text", "meeting notes", "audio", "video", "stt", "meetingtor"]
+}
