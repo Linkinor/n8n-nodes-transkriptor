@@ -1,20 +1,21 @@
 import type { INodeProperties } from 'n8n-workflow';
 
-const showOnlyForUpload = {
-	operation: ['upload'],
+const showOnlyForUrl = {
+	operation: ['transcribeUrl'],
 	resource: ['transcription'],
 };
 
-export const transcriptionUploadDescription: INodeProperties[] = [
+export const transcriptionUrlDescription: INodeProperties[] = [
 	{
-		displayName: 'File Name',
-		name: 'fileName',
+		displayName: 'URL',
+		name: 'sourceUrl',
 		type: 'string',
 		required: true,
 		default: '',
-		displayOptions: { show: showOnlyForUpload },
-		placeholder: 'e.g. interview.mp3',
-		description: 'The name of the file to upload for transcription',
+		displayOptions: { show: showOnlyForUrl },
+		placeholder: 'e.g. https://www.youtube.com/watch?v=...',
+		description:
+			'The URL of the file to transcribe (YouTube, Google Drive, Dropbox, OneDrive, or any public audio/video URL)',
 	},
 	{
 		displayName: 'Language',
@@ -22,7 +23,7 @@ export const transcriptionUploadDescription: INodeProperties[] = [
 		type: 'string',
 		required: true,
 		default: 'en-US',
-		displayOptions: { show: showOnlyForUpload },
+		displayOptions: { show: showOnlyForUrl },
 		placeholder: 'e.g. en-US, tr-TR, de-DE',
 		description: 'Language code in ISO format for the transcription',
 	},
@@ -31,7 +32,7 @@ export const transcriptionUploadDescription: INodeProperties[] = [
 		name: 'service',
 		type: 'options',
 		required: true,
-		displayOptions: { show: showOnlyForUpload },
+		displayOptions: { show: showOnlyForUrl },
 		options: [
 			{ name: 'Standard', value: 'Standard' },
 			{ name: 'Subtitle', value: 'Subtitle' },
@@ -41,24 +42,24 @@ export const transcriptionUploadDescription: INodeProperties[] = [
 	},
 	{
 		displayName: 'Options',
-		name: 'uploadOptions',
+		name: 'urlOptions',
 		type: 'collection',
-		displayOptions: { show: showOnlyForUpload },
+		displayOptions: { show: showOnlyForUrl },
 		default: {},
 		options: [
+			{
+				displayName: 'File Name',
+				name: 'fileName',
+				type: 'string',
+				default: '',
+				description: 'Custom name for the transcription file',
+			},
 			{
 				displayName: 'Folder ID',
 				name: 'folderId',
 				type: 'string',
 				default: '',
 				description: 'ID of the folder for storage (default is "Recent Files")',
-			},
-			{
-				displayName: 'Triggering Word',
-				name: 'triggeringWord',
-				type: 'string',
-				default: '',
-				description: 'A specific word to trigger a new line break in the transcription',
 			},
 		],
 	},

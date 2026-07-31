@@ -1,5 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
-import { transcriptionUploadDescription } from './upload';
+import { transcriptionUrlDescription } from './upload';
 import { transcriptionMeetingDescription } from './meeting';
 
 const showOnlyForTranscription = {
@@ -15,21 +15,22 @@ export const transcriptionDescription: INodeProperties[] = [
 		displayOptions: { show: showOnlyForTranscription },
 		options: [
 			{
+				name: 'Transcribe From URL',
+				value: 'transcribeUrl',
+				action: 'Transcribe from a URL',
+				description:
+					'Transcribe audio/video from a URL (YouTube, Google Drive, Dropbox, OneDrive)',
+			},
+			{
 				name: 'Transcribe Meeting',
 				value: 'meeting',
 				action: 'Transcribe a live meeting',
 				description:
 					'Send a bot to join and transcribe a Google Meet, Microsoft Teams, or Zoom meeting',
 			},
-			{
-				name: 'Upload File',
-				value: 'upload',
-				action: 'Upload a file for transcription',
-				description: 'Upload a local audio or video file for transcription',
-			},
 		],
-		default: 'meeting',
+		default: 'transcribeUrl',
 	},
-	...transcriptionUploadDescription,
+	...transcriptionUrlDescription,
 	...transcriptionMeetingDescription,
 ];

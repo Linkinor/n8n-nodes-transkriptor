@@ -191,45 +191,31 @@ async function handleTranscription(
 		)) as IDataObject;
 	}
 
-	if (operation === 'upload') {
-		const fileName = this.getNodeParameter('fileName', itemIndex) as string;
+	if (operation === 'transcribeUrl') {
+		const sourceUrl = this.getNodeParameter('sourceUrl', itemIndex) as string;
 		const language = this.getNodeParameter('language', itemIndex) as string;
 		const service = this.getNodeParameter('service', itemIndex) as string;
-		const uploadOptions = this.getNodeParameter('uploadOptions', itemIndex, {}) as IDataObject;
+		const urlOptions = this.getNodeParameter('urlOptions', itemIndex, {}) as IDataObject;
 
-		const uploadUrlBody: IDataObject = { file_name: fileName };
-		const uploadUrlResponse = (await transkriptorApiRequest.call(
-			this,
-			'POST',
-			'/developer/transcription/local_file/get_upload_url',
-			uploadUrlBody,
-		)) as IDataObject;
-
-		const initiateBody: IDataObject = {
-			url: uploadUrlResponse.public_url as string,
+		const body: IDataObject = {
+			url: sourceUrl,
 			language,
 			service,
 		};
 
-		if (uploadOptions.folderId) {
-			initiateBody.folder_id = uploadOptions.folderId;
+		if (urlOptions.fileName) {
+			body.file_name = urlOptions.fileName;
 		}
-		if (uploadOptions.triggeringWord) {
-			initiateBody.triggering_word = uploadOptions.triggeringWord;
+		if (urlOptions.folderId) {
+			body.folder_id = urlOptions.folderId;
 		}
 
-		const transcriptionResponse = (await transkriptorApiRequest.call(
+		return (await transkriptorApiRequest.call(
 			this,
 			'POST',
-			'/developer/transcription/local_file/initiate_transcription',
-			initiateBody,
+			'/developer/transcription/url',
+			body,
 		)) as IDataObject;
-
-		return {
-			...transcriptionResponse,
-			upload_url: uploadUrlResponse.upload_url,
-			public_url: uploadUrlResponse.public_url,
-		} as IDataObject;
 	}
 
 	throw new NodeOperationError(this.getNode(), `Unknown operation: ${operation}`);
