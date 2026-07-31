@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { supportedLanguages } from '../../shared/languages';
 
 const showOnlyForUrl = {
 	operation: ['transcribeUrl'],
@@ -20,12 +21,12 @@ export const transcriptionUrlDescription: INodeProperties[] = [
 	{
 		displayName: 'Language',
 		name: 'language',
-		type: 'string',
+		type: 'options',
 		required: true,
 		default: 'en-US',
 		displayOptions: { show: showOnlyForUrl },
-		placeholder: 'e.g. en-US, tr-TR, de-DE',
-		description: 'Language code in ISO format for the transcription',
+		description: 'Language for the transcription',
+		options: supportedLanguages,
 	},
 	{
 		displayName: 'Service',
