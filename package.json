@@ -46,5 +46,6 @@
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
-	}
+	},
+	"packageManager": "pnpm@11.18.0"
 }
