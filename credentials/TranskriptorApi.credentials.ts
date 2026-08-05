@@ -27,7 +27,7 @@ export class TranskriptorApi implements ICredentialType {
 			default: '',
 			required: true,
 			description:
-				'Your Transkriptor API key. Find it at https://app.transkriptor.com/app/api-key',
+				'Your Transkriptor API key. Find it under Settings → My Account at app.transkriptor.com',
 		},
 	];
 

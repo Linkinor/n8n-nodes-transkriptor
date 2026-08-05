@@ -50,8 +50,8 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 To use this node you need a **Transkriptor API key**.
 
 1. Sign up or log in at [transkriptor.com](https://transkriptor.com)
-2. Navigate to **Developer API** or go directly to [app.transkriptor.com/app/api-key](https://app.transkriptor.com/app/api-key)
-3. Generate a new API key
+2. Go to **Settings** → **My Account**
+3. Copy your **API Key** shown on the page
 4. In n8n, go to **Credentials** → **New Credential** → search for **Transkriptor API**
 5. Paste your API key and save
 
